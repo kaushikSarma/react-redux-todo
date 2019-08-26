@@ -12,12 +12,13 @@ div{
             margin-bottom: 20px;
             font-size: 1.4em;
             padding: 5px;
-            transition: all 0.5s;
+            transition: all 0.2s;
         }
         
         input, textarea {
             border: none;
             border-bottom: 2px solid rosybrown;
+            resize: none;
             &:hover {
                 border-bottom: 2px solid coral;
             }

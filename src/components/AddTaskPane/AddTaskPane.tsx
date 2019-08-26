@@ -36,6 +36,7 @@ export default class AddTaskPane extends React.Component<AddTaskProps> {
 
     handleSubmit = event => {
         event.preventDefault();
+        // event.target.reset();
         this.props.addTaskHandler(this.state);
     }
 

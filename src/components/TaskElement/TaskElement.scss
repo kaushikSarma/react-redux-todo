@@ -1,7 +1,7 @@
 li {
     position: relative;
     padding: 20px;
-    transition: all 0.5s;
+    transition: all 0.2s;
     &.hasdeadline::before , &.hasdeadline::after {
         position: absolute;
         top: -10px;

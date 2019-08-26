@@ -12,35 +12,49 @@ import { Status } from "./data/Status";
 
 import './index.scss';
 
-const TodoReducer = (state:TasksList = new TasksList(0,
-    new Task({"title": "Lift","description": "remember to pick up slippers"}),
-    new Task({"title": "Complete app", "description": "Need to complete this application by Tuesday"}),
-    new Task({"title": "Add Deadline", "description": "Test conditional display of end date", "enddate": new Date()})
-), action) => {
+class AppState {
+    todos: TasksList;
+    visibilityFilter: string;
+
+    constructor(taskdata: TasksList = new TasksList(), visibilityFilter = 'ALL') {
+        this.todos = taskdata;
+        this.visibilityFilter = visibilityFilter;
+    }
+}
+
+const TodoReducer = (state:AppState = new AppState(new TasksList(0,
+        new Task({"title": "Lift","description": "remember to pick up slippers"}),
+        new Task({"title": "Complete app", "description": "Need to complete this application by Tuesday"}),
+        new Task({"title": "Add Deadline", "description": "Test conditional display of end date", "enddate": new Date()})
+    )), action) => {
     switch(action.type) {
-        case 'ADD_TODO': 
-            const newstate = new TasksList(state.getCurrentTaskID(), ...state.getTasks(), new Task({
+        case 'ADD_TODO': {
+            const newstate = new AppState(new TasksList(state.todos.getCurrentTaskID(), ...state.todos.getTasks(), new Task({
                                     "title": action.data["TaskTitle"],
                                     "description": action.data["TaskDescription"],
                                     "enddate": action.data["TaskEndDate"]
                                 })
-                            );
+                            ), state.visibilityFilter);
             return newstate;
-            
-        case 'REMOVE_TODO':
-            const updatestate = new TasksList(state.getCurrentTaskID(), ...state.getTasks().filter(state => state.getID() !== action.todoid));
-            return updatestate;
-
-        case 'TOGGLE_TODO':
-            let a = state;
-            a.getTasks().map(state => {
+        }    
+        case 'REMOVE_TODO': {
+            const newstate = new AppState(new TasksList(state.todos.getCurrentTaskID(), ...state.todos.getTasks().filter(state => state.getID() !== action.todoid)), state.visibilityFilter);
+            return newstate;
+        }
+        case 'TOGGLE_TODO': {
+            let newstate = state;
+            newstate.todos.getTasks().map(state => {
                 if (state.getID() === action.todoid) {
                     state.changeStatus(state.getStatus() === Status.COMPLETE ? Status.PENDING : Status.COMPLETE);
                 }
             })
-            const toggledstate = new TasksList(state.getCurrentTaskID(), ...a.getTasks());
+            const toggledstate = new AppState(new TasksList(state.todos.getCurrentTaskID(), ...newstate.todos.getTasks()), state.visibilityFilter);
             return toggledstate;
-        
+        }
+        case 'CHANGE_VISIBLE': {
+            let newstate = new AppState(state.todos, action.visibility);
+            return newstate;
+        }
         default: return state;
     }
 }
@@ -59,17 +73,24 @@ class App extends React.Component {
         });
     }
 
-    removeTask = (taskid) => {
+    removeTask = (taskid: number) => {
         TodoStore.dispatch({
             type: 'REMOVE_TODO',
             todoid: taskid
         })
     }
 
-    toggleTask = (taskid) => {
+    toggleTask = (taskid: number) => {
         TodoStore.dispatch({
             type: 'TOGGLE_TODO',
             todoid: taskid
+        })
+    }
+
+    changeVisibility = (value: string) => {
+        TodoStore.dispatch({
+            type: 'CHANGE_VISIBLE',
+            visibility: value
         })
     }
 
@@ -79,8 +100,8 @@ class App extends React.Component {
             <div id='mainPanel'>
                 <AddTaskPane addTaskHandler={this.addNewTask}/>
                 <div id='listPanel'>
-                    <Header />
-                    <TaskListElement toggleTaskHandler={this.toggleTask} removetaskHandler={this.removeTask} tasks={TodoStore.getState()}/>
+                    <Header changeVisibility={this.changeVisibility}/>
+                    <TaskListElement toggleTaskHandler={this.toggleTask} removetaskHandler={this.removeTask} visibilty={TodoStore.getState().visibilityFilter} tasks={TodoStore.getState().todos}/>
                 </div>
             </div>
         );
