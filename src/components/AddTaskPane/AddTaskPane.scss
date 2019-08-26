@@ -1,0 +1,38 @@
+div{
+    &.sidebar {
+        width: 200px;
+        flex-basis: 30%;
+        padding: 10px;
+        padding-top: 40px;
+
+        input[type='text'], input[type='date'], textarea, button { 
+            width: 100%;
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            padding: 5px;
+            transition: all 0.5s;
+        }
+        
+        input, textarea {
+            border: none;
+            border-bottom: 2px solid rosybrown;
+            &:hover {
+                border-bottom: 2px solid coral;
+            }
+        }
+        
+        button {
+            background: transparent;
+            text-transform: uppercase;
+            font-size: 1em;
+            border-radius: 5px;
+            font-weight: 600;
+            &:hover {
+                background: coral;
+                color: white;
+            }
+        }
+    }
+}

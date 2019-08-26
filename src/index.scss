@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+button {
+    cursor: pointer;
+}
+
+div#root {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+div#mainPanel {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+div#mainPanel > div#listPanel {
+    width: 100%;
+    background: aliceblue;
+    padding: 40px;
+    overflow-y: scroll; 
+}

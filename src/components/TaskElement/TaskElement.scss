@@ -1,0 +1,30 @@
+li {
+    position: relative;
+    padding: 20px;
+    transition: all 0.5s;
+    &.complete {
+        // background: lightgray;
+        opacity: 0.5;
+    }
+    &.pending:hover{
+        transform: scale(1.01);
+        background: lightpink;
+    }
+    h4 {
+        margin: 0;
+    }
+    button {
+        transition: all 0.2s;
+        padding: 0.5rem;
+        font-size: 0.6em;
+        font-weight: 600;
+        background: transparent;
+        border: none;
+        text-transform: uppercase;
+        border-bottom: 2px solid grey;
+        margin-right: 10px;
+        &:hover {
+            border-bottom: 2px solid #ffffff;            
+        }
+    }
+}
