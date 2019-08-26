@@ -24,8 +24,11 @@ export default class TaskElement extends React.Component<TaskProp> {
     }
 
     render() {
+        let deadline = this.props.taskData.getEndDate() === null ? "" : this.props.taskData.getEndDate().toLocaleDateString();
+        let classlist = this.props.taskData.getStatus() === Status.COMPLETE ? "complete" : "pending";
+        classlist += deadline === "" ? "" : " hasdeadline";
         return (
-            <li className={this.props.taskData.getStatus() === Status.COMPLETE ? "complete" : "pending"}>
+            <li data-deadline={deadline} className={classlist}>
                 <h4>{this.props.taskData.getID()}. {this.props.taskData.getTitle()}</h4>
                 <p>{this.props.taskData.getDescription()}</p>
                 <button onClick={this.toggleTask}>{ this.props.taskData.getStatus() === Status.COMPLETE ? "Mark as Pending" : "Mark as Complete" }</button>

@@ -2,6 +2,22 @@ li {
     position: relative;
     padding: 20px;
     transition: all 0.5s;
+    &.hasdeadline::before , &.hasdeadline::after {
+        position: absolute;
+        top: -10px;
+        height: 20px;
+        width: 200px;
+        background: #ffffff;
+    }
+    &.hasdeadline::before {
+        left: 10px;
+        padding-left: 10px;    
+        content: "Complete By: ";
+    }
+    &.hasdeadline::after {
+        left: 150px;        
+        content: attr(data-deadline);
+    }
     &.complete {
         // background: lightgray;
         opacity: 0.5;

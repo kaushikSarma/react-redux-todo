@@ -14,7 +14,8 @@ import './index.scss';
 
 const TodoReducer = (state:TasksList = new TasksList(0,
     new Task({"title": "Lift","description": "remember to pick up slippers"}),
-    new Task({"title": "Complete app", "description": "Need to complete this application by Tuesday"})
+    new Task({"title": "Complete app", "description": "Need to complete this application by Tuesday"}),
+    new Task({"title": "Add Deadline", "description": "Test conditional display of end date", "enddate": new Date()})
 ), action) => {
     switch(action.type) {
         case 'ADD_TODO': 
