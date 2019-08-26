@@ -24,7 +24,11 @@ export default class TaskElement extends React.Component<TaskProp> {
     }
 
     render() {
-        let deadline = this.props.taskData.getEndDate() === null ? "" : this.props.taskData.getEndDate().toLocaleDateString();
+        let deadline = this.props.taskData.getEndDate() === null ? "" : this.props.taskData.getEndDate();
+        if (deadline !== "" && !(deadline instanceof Date))
+            deadline = (new Date(deadline)).toLocaleDateString();
+        else if (deadline !== "" && deadline instanceof Date)
+            deadline = deadline.toLocaleDateString();
         let classlist = this.props.taskData.getStatus() === Status.COMPLETE ? "complete" : "pending";
         classlist += deadline === "" ? "" : " hasdeadline";
         return (

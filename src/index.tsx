@@ -28,6 +28,10 @@ const TodoReducer = (state:AppState = new AppState(new TasksList(0,
         new Task({"title": "Add Deadline", "description": "Test conditional display of end date", "enddate": new Date()})
     )), action) => {
     switch(action.type) {
+        case 'READ_CACHE': {
+            const newstate = new AppState(new TasksList(action.currentTaskID, ...action.todoarray), action.visibilityFilter);
+            return newstate;
+        }
         case 'ADD_TODO': {
             const newstate = new AppState(new TasksList(state.todos.getCurrentTaskID(), ...state.todos.getTasks(), new Task({
                                     "title": action.data["TaskTitle"],
@@ -66,6 +70,23 @@ class App extends React.Component {
         super(props);
     }
 
+    componentWillMount = () => {
+        let CacheState = JSON.parse(window.localStorage.getItem('todos'));
+        if(CacheState !== null && CacheState.todos !== undefined) {
+            TodoStore.dispatch({
+                type: 'READ_CACHE',
+                currentTaskID: CacheState.todos.currentTaskID,
+                todoarray: CacheState.todos.tasks.map(t => new Task({...t})),
+                visibility: CacheState.visibilityState
+            });
+        }
+    }
+
+    componentDidUpdate = () => {
+        let CacheStateString = JSON.stringify(TodoStore.getState());
+        window.localStorage.setItem('todos', CacheStateString);
+    }
+
     addNewTask = (data) => {
         TodoStore.dispatch({
             type: 'ADD_TODO',
@@ -95,7 +116,6 @@ class App extends React.Component {
     }
 
     render() {
-        console.log(TodoStore.getState());
         return (
             <div id='mainPanel'>
                 <AddTaskPane addTaskHandler={this.addNewTask}/>

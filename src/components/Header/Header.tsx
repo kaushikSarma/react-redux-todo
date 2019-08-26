@@ -6,7 +6,6 @@ interface HeaderProps {
 }
 export default class Header extends React.Component<HeaderProps> {
     changeVisibility = (event) => {
-        console.log(event.target.value);
         this.props.changeVisibility(event.target.value);
     }
     render = () => {

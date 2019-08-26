@@ -27,15 +27,12 @@ export default class TaskListElement extends React.Component<TaskListProp> {
     render(){
         return (
             <ul> {
-                this.props['tasks'].getTasks().filter(data => {
-                    if (
-                        this.props.visibilty === 'ALL' 
-                        || (this.props.visibilty === 'PENDING' && data.getStatus() === Status.PENDING)
-                        || (this.props.visibilty === 'COMPLETE' && data.getStatus() === Status.COMPLETE)
-                    )  
-                    return true;
-                    else return false;
-                }).map((data, index) => <TaskElement key={index} taskData={data} toggleTaskHandler={this.toggleTask} removeTaskHandler={this.removeTask}/>)
+                this.props['tasks'].getTasks()
+                .filter(data => this.props.visibilty === 'ALL' 
+                    || (this.props.visibilty === 'PENDING' && data.getStatus() === Status.PENDING)
+                    || (this.props.visibilty === 'COMPLETE' && data.getStatus() === Status.COMPLETE)
+                )
+                .map((data, index) => <TaskElement key={index} taskData={data} toggleTaskHandler={this.toggleTask} removeTaskHandler={this.removeTask}/>)
             }
             </ul>
         )

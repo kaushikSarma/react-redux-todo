@@ -7,7 +7,6 @@ export default class Task {
     private status : Status;
     private enddate ?: Date;
     constructor (options) {
-        console.log(options);
         if (options === undefined) return;
         this.title = (options['title'] === undefined ?  "" : options['title']); 
         this.description = (options['description'] === undefined ? ""  : options['description']);
