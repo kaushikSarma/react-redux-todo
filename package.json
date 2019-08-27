@@ -9,7 +9,8 @@
     "build-prod": "webpack --config ./webpack.config.js --mode=production",
     "build": "webpack --config ./webpack.config.js --mode=production",
     "postbuild": "git add .  && git commit -m 'update build files' && git subtree push --prefix dist origin gh-pages",
-    "start": "webpack-dev-server --mode development --open --hot"
+    "start": "webpack-dev-server --mode development --open --hot",
+    "serve": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -45,5 +46,7 @@
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
