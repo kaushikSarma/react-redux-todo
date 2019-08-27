@@ -47,6 +47,8 @@
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0"
   }
 }

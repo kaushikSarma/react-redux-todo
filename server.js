@@ -1,7 +1,13 @@
 const express = require('express');
-
+const fs = require('fs');
 const app = express();
+
 app.use(express.static('dist'));
 
-require('http').createServer(app).listen(3000);
-console.log('Serving on http://localhost:3000');
+const options = {
+	key: fs.readFileSync('certificates/key.pem'),
+	cert: fs.readFileSync('certificates/cert.pem')
+};
+
+require('https').createServer(options, app).listen(3000);
+console.log('Serving on https://localhost:3000');
