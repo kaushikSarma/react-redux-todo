@@ -1,0 +1,40 @@
+div[class^='alert-popup-'] {
+    width: 500px;
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translate(-50%);
+    // transition: all 0.5s;
+    padding: 20px;
+    box-shadow: 2px 2px 2px #3d3d33;
+    z-index: 100;
+    opacity: 0;
+    > span.exit-popup {
+        float: right;
+        transition: all 0.2s;
+        cursor: pointer;
+        &:hover {
+            color: red;
+            text-decoration: underline;
+        }
+    }
+}
+
+.alert-popup-success {
+    background: #ffffff;
+    > h4 {
+        color: green;
+    }
+}
+
+.alert-popup-failure {
+    background: #ffffff;
+    > h4 {
+        color: coral;
+    }
+}
+
+.visible {
+    opacity: 1;
+    transition: all 0.8s;
+}

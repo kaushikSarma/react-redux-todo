@@ -1,6 +1,5 @@
 import * as React from "react";
 import TaskElement from "../TaskElement";
-import Task from 'data/Task';
 import './TaskListElement.scss';
 import TasksList from "../../data/TasksList";
 import { Status } from "../../data/Status";
@@ -23,10 +22,10 @@ export default class TaskListElement extends React.Component<TaskListProp> {
     toggleTask = (taskid) => {
         this.props['toggleTaskHandler'](taskid);
     }
-
     render(){
         return (
-            <ul> {
+            <ul> 
+            {
                 this.props['tasks'].getTasks()
                 .filter(data => this.props.visibilty === 'ALL' 
                     || (this.props.visibilty === 'PENDING' && data.getStatus() === Status.PENDING)
