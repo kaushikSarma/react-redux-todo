@@ -26,10 +26,13 @@ export default class Alert extends React.Component<AlertProps> {
         this.setState({
             show: true
         });
+        setTimeout(() => {
+            this.unmount();
+        }, 2500);
     }
 
     render = () => {
-        let alertClass = 'alert-popup-' + this.props.type + (this.state['show'] ? ' visible' : '');
+        let alertClass = 'alert-popup-' + this.props.type;
         return(
             <div className={alertClass}>
                 <span className='exit-popup' onClick={this.unmount}>x</span>
