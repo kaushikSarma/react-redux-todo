@@ -1,6 +1,6 @@
 import * as React from "react";
-import Task from "../../data/Task";
-import { Status } from "../../data/Status";
+import Task from "@data/Task";
+import { Status } from "@data/Status";
 
 import './TaskElement.scss';
 

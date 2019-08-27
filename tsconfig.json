@@ -7,15 +7,12 @@
         "lib": [ "es2015", "es2017", "dom" ],
         "jsx": "react",
         "removeComments": true,
-        "baseUrl": "./",
         "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "baseUrl": "./src",
         "paths": {
-            "components/*": [
-                "src/components/*"
-            ],
-            "data/*": [
-                "src/data/*"
-            ]
-        }
+            "@components/*": [ "components/*" ],
+            "@data/*": [ "data/*" ],
+        },
     }
 }

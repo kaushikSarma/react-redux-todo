@@ -1,6 +1,6 @@
 import * as React from "react";
 import './AddTaskPane.scss';
-import Alert from "../../components/Alert";
+import Alert from "@components/Alert/Alert";
 
 interface AddTaskProps {
     addTaskHandler(data);
@@ -25,12 +25,9 @@ export default class AddTaskPane extends React.Component<AddTaskProps> {
         console.log(this.state);
         const target = event.target;
         let value = target.type === 'checkbox' ? target.checked : target.value;
-        if (target.type === 'date') {
-            // value = isNaN(Date.parse(value)) ? value : target.valueAsDate;
-        }
         const name = target.name;
-        // In case of checkbox we should not prevent default action
-        (target.type !== 'checkbox' && target.type !=='date')&& event.preventDefault();
+        // In case of checkbox and date we should not prevent default action
+        (target.type !== 'checkbox' && target.type !=='date') && event.preventDefault();
         this.setState({
             [name]: value
         });
@@ -74,10 +71,10 @@ export default class AddTaskPane extends React.Component<AddTaskProps> {
         event.preventDefault();
         console.log(this.state);
         if(this.isValid(this.state)) {
+            this.alert('New To-do Added', this.state['TaskTitle'] + ' added to your list!', 'success');
             this.props.addTaskHandler(this.state);
             this.resetForm();
             event.target.reset();
-            alert('Todo Added!')
         }
     }
 

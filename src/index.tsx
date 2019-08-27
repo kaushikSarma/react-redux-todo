@@ -2,13 +2,13 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { createStore } from "redux";
 
-import Header from "./components/Header";
-import TaskListElement from "./components/TaskListElement";
-import AddTaskPane from './components/AddTaskPane/AddTaskPane';
+import Header from "@components/Header/Header";
+import TaskListElement from "@components/TaskListElement/TaskListElement";
+import AddTaskPane from '@components/AddTaskPane/AddTaskPane';
 
-import TasksList from './data/TasksList';
-import Task from "./data/Task";
-import { Status } from "./data/Status";
+import TasksList from '@data/TasksList';
+import Task from "@data/Task";
+import { Status } from "@data/Status";
 
 import './index.scss';
 
@@ -121,7 +121,7 @@ class App extends React.Component {
                 <AddTaskPane addTaskHandler={this.addNewTask}/>
                 <div id='listPanel'>
                     <Header changeVisibility={this.changeVisibility}/>
-                    <TaskListElement toggleTaskHandler={this.toggleTask} removetaskHandler={this.removeTask} visibilty={TodoStore.getState().visibilityFilter} tasks={TodoStore.getState().todos}/>
+                    <TaskListElement toggleTaskHandler={this.toggleTask} removeTaskHandler={this.removeTask} visibilty={TodoStore.getState().visibilityFilter} tasks={TodoStore.getState().todos}/>
                 </div>
             </div>
         );

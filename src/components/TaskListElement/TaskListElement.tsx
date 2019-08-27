@@ -1,10 +1,13 @@
 import * as React from "react";
-import TaskElement from "../TaskElement";
-import './TaskListElement.scss';
-import TasksList from "../../data/TasksList";
-import { Status } from "../../data/Status";
 
-interface TaskListProp {
+import TaskElement from "@components/TaskElement/TaskElement";
+
+import TasksList from "@data/TasksList";
+import { Status } from "@data/Status";
+
+import './TaskListElement.scss';
+
+export interface TaskListProp {
     removeTaskHandler(taskid:number);
     toggleTaskHandler(taskid:number);
     visibilty: string;
