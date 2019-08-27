@@ -36,7 +36,7 @@ const TodoReducer = (state:AppState = new AppState(new TasksList(0,
             const newstate = new AppState(new TasksList(state.todos.getCurrentTaskID(), ...state.todos.getTasks(), new Task({
                                     "title": action.data["TaskTitle"],
                                     "description": action.data["TaskDescription"],
-                                    "enddate": new Date(action.data["TaskEndDate"])
+                                    "enddate": action.data["TaskEndDate"] === "" ? null : new Date(action.data["TaskEndDate"])
                                 })
                             ), state.visibilityFilter);
             return newstate;
