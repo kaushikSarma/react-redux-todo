@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import TaskElement from "@components/TaskElement/TaskElement";
+import TaskElement from '@components/TaskElement';
 
 import TasksList from "@data/TasksList";
 import { Status } from "@data/Status";

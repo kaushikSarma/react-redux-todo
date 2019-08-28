@@ -1,6 +1,6 @@
 import * as React from "react";
 import './AddTaskPane.scss';
-import Alert from "@components/Alert/Alert";
+import Alert from '@components/Alert';
 
 interface AddTaskProps {
     addTaskHandler(data);

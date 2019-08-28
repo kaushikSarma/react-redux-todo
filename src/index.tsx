@@ -2,9 +2,9 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { createStore } from "redux";
 
-import Header from "@components/Header/Header";
-import TaskListElement from "@components/TaskListElement/TaskListElement";
-import AddTaskPane from '@components/AddTaskPane/AddTaskPane';
+import Header from "@components/Header";
+import TaskListElement from '@components/TaskListElement';
+import AddTaskPane from '@components/AddTaskPane';
 
 import TasksList from '@data/TasksList';
 import Task from "@data/Task";
