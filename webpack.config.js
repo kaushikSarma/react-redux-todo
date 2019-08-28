@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-
+const AutoPrefixer = require('autoprefixer');
 module.exports = (env, argv) => {
     return {
         watch: argv.mode === 'production' ? false : true,
@@ -34,7 +34,7 @@ module.exports = (env, argv) => {
                 },
                 {
                     test: /\.s[ac]ss$/i,
-                    use: ["style-loader", "css-loader", "sass-loader"]
+                    use: ["style-loader", "css-loader", {loader: "postcss-loader", options: {plugins: [AutoPrefixer()]}}, "sass-loader"]
                 }
             ]
         },
