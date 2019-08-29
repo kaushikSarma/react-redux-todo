@@ -19,11 +19,11 @@ export default class TaskListElement extends React.Component<TaskListProp> {
     }
 
     removeTask = (taskid) => {
-        this.props['removetaskHandler'](taskid);
+        this.props.removeTaskHandler(taskid);
     }
 
     toggleTask = (taskid) => {
-        this.props['toggleTaskHandler'](taskid);
+        this.props.toggleTaskHandler(taskid);
     }
     render(){
         return (

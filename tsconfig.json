@@ -13,6 +13,7 @@
         "paths": {
             "@components/*": [ "components/*" ],
             "@data/*": [ "data/*" ],
+            "@reducers/": ["reducers/*"]
         },
     }
 }
